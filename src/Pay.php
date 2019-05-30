@@ -27,11 +27,12 @@ class Pay
     {
         list($order) = $arguments;
         $params      = $order;
-        $params      = array_merge($this->params, $order, [
+        $params      = array_merge($this->params, [
             'gateway' => strtoupper($func),
         ]);
-        $sign           = $this->makeSign($params);
-        $params['sign'] = $sign;
+        $params['bz_content'] = json_encode($order);
+        $sign                 = $this->makeSign($params);
+        $params['sign']       = $sign;
         return $this->url . '?' . http_build_query($params);
     }
     public static function __callStatic($func, $arguments)
