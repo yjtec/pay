@@ -1,0 +1,19 @@
+{
+    "name": "yjtec/pay",
+    "description": "yjtec pay composerr",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kidkang",
+            "email": "723616880@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Yjtec\\Pay\\":"src/"
+        }
+    }
+}
