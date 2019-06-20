@@ -1,6 +1,6 @@
 <?php
 namespace Yjtec\Pay;
-
+use Yjtec\Support\Sign;
 class Pay
 {
     private $type; //支付方式  Alipay Wx
@@ -22,7 +22,29 @@ class Pay
         $this->timeStamp  = time();
         $this->params     = $this->makeParams();
     }
+    public function verify()
+    {
+        $postData  = $_POST;
+        if(!isset($postData['timeStamp']) || !isset($postData['sign'])){
+            throw new SignException('签名错误','SIGN FAIL');
+        }
+        $timeStamp = $postData['timeStamp'];
+        $postSign  = $postData['sign'];
+        unset($postData['timeStamp']);
+        unset($postData['sign']);
+        $sign = Sign::make($this->secret,$timeStamp,$postData);
+        if($sign['sign'] != $postSign){
+            throw new SignException('签名错误','SIGN FAIL');
+        }
+        return $postData;
+    }
 
+    public function success(){
+        return [
+            'errcode' => 'SUCCESS',
+            'errmsg' => 'OK'
+        ];
+    }
     public function __call($func, $arguments)
     {
         list($order) = $arguments;
