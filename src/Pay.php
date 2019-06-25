@@ -1,6 +1,7 @@
 <?php
 namespace Yjtec\Pay;
 use Yjtec\Support\Sign;
+use Yjtec\Support\Curl;
 class Pay
 {
     private $type; //支付方式  Alipay Wx
@@ -9,7 +10,7 @@ class Pay
     private $return_url;
     private $notify_url;
     private $params;
-    private $url = "http://test.npay.qjzhcs.com/pay";
+    private $url = "http://test.npay.qjzhcs.com/";
     public function __construct($config, $type)
     {
 
@@ -45,6 +46,7 @@ class Pay
             'errmsg' => 'OK'
         ];
     }
+
     public function __call($func, $arguments)
     {
         list($order) = $arguments;
@@ -55,7 +57,13 @@ class Pay
         $params['bz_content'] = json_encode($order);
         $sign                 = $this->makeSign($params);
         $params['sign']       = $sign;
-        return $this->url . '?' . http_build_query($params);
+
+        $re = Curl::get($this->url.'pay/prepay?'.http_build_query($params));
+        $re = json_decode($re,true);
+        if($re['errcode'] != 0){
+            throw new \Exception('下单错误','PRE FAIL');
+        }
+        return $this->url . 'pay?' . http_build_query($params);
     }
     public static function __callStatic($func, $arguments)
     {
