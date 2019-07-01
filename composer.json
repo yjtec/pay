@@ -11,7 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "yjtec/support": "dev-master"
+        "yjtec/support": "1.0.*"
     },
     "autoload": {
         "psr-4": {
