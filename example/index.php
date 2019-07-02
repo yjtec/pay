@@ -2,8 +2,8 @@
 require '../vendor/autoload.php';
 use Yjtec\Pay\Pay;
 $config = [
-    'appid' => 'SxmfErjzem3ylFBA',
-    'secret' => 'lbfK571EUHt7oDEYA46D0ylY5zZhbuIi',
+    'appid' => 'jEMQRh6zMZPMhikq',
+    'secret' => 'KDI4P6hvSnkaq0QU4qv1H550J4Xx9wJ1',
     'return_url' => 'http://www.baidu.com',
     'notify_url' => 'http://www.baidu.com'
 ];

@@ -9,7 +9,7 @@ class Base
     protected $return_url;
     protected $notify_url;
     protected $params;
-    protected $url = "http://test.npay.qjzhcs.com/";
+    protected $url = "http://npay.360vrsh.com/";
     public function __construct($config, $type)
     {
 

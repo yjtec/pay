@@ -10,7 +10,7 @@ class Pay
     private $return_url;
     private $notify_url;
     private $params;
-    private $url = "http://test.npay.qjzhcs.com/";
+    private $url = "http://npay.360vrsh.com/";
     public function __construct($config, $type)
     {
 
