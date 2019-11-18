@@ -17,10 +17,13 @@ class Base
         $this->type       = $type;
         $this->appid      = $config['appid'];
         $this->secret     = $config['secret'];
-        $this->notify_url = $config['notify_url'];
-        $this->return_url = $config['return_url'];
+        $this->notify_url = isset($config['notify_url']) ? $config['notify_url'] : '' ;
+        $this->return_url = isset($config['return_url']) ? $config['return_url'] :'';
         $this->timeStamp  = time();
         $this->params     = $this->makeParams();
+        if(isset($config['debug']) && $config['debug'] == true){
+            $this->url = 'http://dev.npay.360vrsh.com/';
+        }        
     }
     protected function makeParams()
     {
